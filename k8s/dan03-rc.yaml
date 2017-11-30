@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: dan03
+  namespace: com-att-ocnp-mgmt
+spec:
+  replicas: 1
+  selector:
+    app: dan03
+  template:
+    metadata:
+      labels:
+        app: dan03
+    spec:
+      serviceAccount: YOUR
+      containers:
+      - name: dan03
+        image: ${docker-registry}/${docker-namespace}/dan03:latest
+        imagePullPolicy: Always
+        ports:
+         - containerPort: 8080
